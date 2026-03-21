@@ -32,24 +32,31 @@ app.use('/api/dependencies', dependenciesRoutes);
 app.use('/api/summary', summaryRoutes);
 
 const port = process.env.PORT ? Number(process.env.PORT) : 3001;
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Backend listening on http://localhost:${port}`);
-  // eslint-disable-next-line no-console
-  console.log('\nRegistered routes:');
-  // eslint-disable-next-line no-console
-  console.log('  GET  /health');
-  // eslint-disable-next-line no-console
-  console.log('  POST /api/analyze');
-  // eslint-disable-next-line no-console
-  console.log('  POST /api/structure');
-  // eslint-disable-next-line no-console
-  console.log('  POST /api/entrypoint');
-  // eslint-disable-next-line no-console
-  console.log('  POST /api/dependencies');
-  // eslint-disable-next-line no-console
-  console.log('  POST /api/summary');
-  // eslint-disable-next-line no-console
-  console.log('');
-});
+
+// Keep existing app.listen for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Backend listening on http://localhost:${port}`);
+    // eslint-disable-next-line no-console
+    console.log('\nRegistered routes:');
+    // eslint-disable-next-line no-console
+    console.log('  GET  /health');
+    // eslint-disable-next-line no-console
+    console.log('  POST /api/analyze');
+    // eslint-disable-next-line no-console
+    console.log('  POST /api/structure');
+    // eslint-disable-next-line no-console
+    console.log('  POST /api/entrypoint');
+    // eslint-disable-next-line no-console
+    console.log('  POST /api/dependencies');
+    // eslint-disable-next-line no-console
+    console.log('  POST /api/summary');
+    // eslint-disable-next-line no-console
+    console.log('');
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;
 

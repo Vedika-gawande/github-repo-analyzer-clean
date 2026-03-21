@@ -1,7 +1,7 @@
 import { ArrowRight, Github, Lock, Moon, Sun, Sparkles, BookOpen, Lightbulb, Cpu } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-const BACKEND_BASE = 'http://localhost:3001';
+const BACKEND_BASE = 'https://wings-aivya.vercel.app';
 const ANALYZE_URL = `${BACKEND_BASE}/api/analyze`;
 const SUMMARY_URL = `${BACKEND_BASE}/api/summary`;
 

@@ -1,5 +1,5 @@
 const axios = require('axios');
-require('dotenv').config({ path: require('path').join(__dirname, '..', '..', '.env') });
+
 
 // eslint-disable-next-line no-console
 console.log('GitHub Token loaded:', process.env.GITHUB_TOKEN ? 'YES' : 'NO');

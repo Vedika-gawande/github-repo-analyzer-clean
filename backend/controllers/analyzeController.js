@@ -7,12 +7,14 @@ const simpleGit = require('simple-git');
 const fsSync = require('fs');
 
 async function cloneRepository(cloneUrl, repoName) {
-  const tempDir = path.join(__dirname, '..', 'temp');
-  if (!fsSync.existsSync(tempDir)) {
-    fsSync.mkdirSync(tempDir, { recursive: true });
+  // Use /tmp for Vercel, as it's the only writable directory
+  const baseTempPath = process.env.VERCEL ? '/tmp' : path.join(__dirname, '..', 'temp');
+  
+  if (!fsSync.existsSync(baseTempPath)) {
+    fsSync.mkdirSync(baseTempPath, { recursive: true });
   }
 
-  const repoPath = path.join(tempDir, repoName);
+  const repoPath = path.join(baseTempPath, repoName);
   if (fsSync.existsSync(repoPath)) return repoPath;
 
   try {

@@ -13,7 +13,7 @@ app.use(cors({
   credentials: false
 }));
 
-app.options('*', cors());
+app.options('(.*)', cors());
 
 console.log('--- ROUTES LOADING ---');
 const analyzeRoutes = require('./routes/analyze');

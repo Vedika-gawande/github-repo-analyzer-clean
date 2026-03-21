@@ -1,4 +1,6 @@
+console.log('--- BACKEND STARTING ---');
 require('dotenv').config();
+console.log('--- DOTENV LOADED ---');
 const express = require('express');
 const cors = require('cors');
 
@@ -13,13 +15,24 @@ app.use(cors({
 
 app.options('*', cors());
 
+console.log('--- ROUTES LOADING ---');
 const analyzeRoutes = require('./routes/analyze');
 const structureRoutes = require('./routes/structure');
 const entrypointRoutes = require('./routes/entrypoint');
 const dependenciesRoutes = require('./routes/dependencies');
 const summaryRoutes = require('./routes/summary');
+console.log('--- ROUTES LOADED ---');
 
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Backend is running!',
+    node_env: process.env.NODE_ENV,
+    has_gemini: !!process.env.GEMINI_API_KEY,
+    has_github: !!process.env.GITHUB_TOKEN 
+  });
+});
 
 app.get('/health', (_req, res) => {
   res.json({ ok: true });

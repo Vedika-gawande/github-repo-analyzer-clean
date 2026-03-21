@@ -1,0 +1,9 @@
+{
+  "name": "codeonvibes",
+  "version": "1.0.0",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0",
+    "dotenv": "^17.3.1"
+  },
+  "type": "module"
+}

@@ -1,163 +1,186 @@
-# Wings-Hackathon
-📁 Project File Structure
+# 🚀 GitHub Repo Analyzer (Aivya)
 
-project/
-├── backend/
-│   ├── analyzers/
-│   ├── controllers/
-│   ├── routes/
-│   │   ├── analyze.js
-│   │   ├── structure.js
-│   │   ├── entrypoint.js
-│   │   ├── dependencies.js
-│   │   └── summary.js
-│   ├── services/
-│   │   ├── githubService.js
-│   │   ├── parser.js
-│   │   ├── dependencyMapper.js
-│   │   └── aiProcessor.js
-│   ├── utils/
-│   ├── server.js
-│   ├── test-routes.js
-│   └── .env
-└── frontend/
-    └── src/
-        └── index.html
+An AI-powered web app that analyzes any public GitHub repository and gives **instant insights into its structure, architecture, dependencies, and execution flow**.
 
-PROMPT 1:
+🔗 **Live Demo:** https://github-repo-analyzer-clean.vercel.app
 
-I need a function that takes a GitHub repository URL from the frontend and fetches all the files and folders. 
-It should return a structured list of files and directories. 
-Focus on public repositories first. 
-Keep the function simple so I can build analysis on top of it. give the excat and most correct folder strcuture for this
+---
 
-PROMPT 2:
-I’m starting a new project and I want to set up a basic Node.js backend with a simple frontend.
+## 📌 Overview
 
-Help me create a clean project structure with the main files already in place so I can build step by step.
+Understanding a new codebase can be overwhelming. This project simplifies that by:
 
-On the backend side:
+* Cloning a repository
+* Analyzing its structure and key components
+* Detecting entry points and dependencies
+* Mapping execution flow
+* Generating an **AI-powered summary**
 
-* Create an `index.js` file to run the server
-* Add a `github.js` file to handle fetching repository data
-* Add an `analyzer.js` file to process and analyze that data
-* Add an `ai.js` file where I’ll handle AI-based formatting
-* Add a `supabase.js` file for database connection
+All in **one click**.
 
-On the frontend side:
+---
 
-* Create a `frontend` folder with a simple `index.html`
+## ✨ Features
 
-Keep everything minimal for now — just basic file setup with placeholder comments so I can understand and build each part gradually.
+* 🔍 **Repository Analysis**
+  Fetch and scan any public GitHub repository
 
-The goal is to have a clean starting point without overcomplicating anything.
+* 📁 **Folder Structure Detection**
+  Understand how the project is organized
 
-PROMPT 3:
-I’m working on a Node.js backend and need a small utility file to handle files and folders.
+* 🎯 **Entry Point Detection**
+  Identify main starting files (e.g., `index.js`, `app.js`)
 
-I want simple functions to:
+* 📦 **Dependency Analysis**
+  Extract dependencies from `package.json`
 
-get all files recursively
-get all folders recursively
-read file content as a string
-get a relative path from a base path
+* 🛡️ **Critical File Detection**
+  Highlight important files (controllers, services, configs)
 
-Use only built-in Node.js modules like fs and path.
+* 🔁 **Execution Flow Mapping**
+  Visualize how requests move through the system
 
-Keep the code clean, simple, and add small comments so it’s easy to understand.
+* 🧠 **AI-Powered Summary**
+  Get insights, architecture overview, and onboarding tips
 
-PROMPT 4:
-I want to build a folder structure analyzer for my project.
+---
 
-Given a local repository path, it should scan the main (top-level) folders and identify important ones like src, controllers, routes, models, services, utils, config, middleware, public, and tests.
+## 🛠️ Tech Stack
 
-For each folder, return its name along with a short, simple description.
+### Frontend
 
-Keep the output clean and structured as a JSON array, and keep the logic simple and easy to understand.
+* Vite + JavaScript
+* HTML/CSS
+* Hosted on **Vercel**
 
-I need to create an API for the folder structure part of my project.
+### Backend
 
+* Node.js + Express
+* GitHub repo cloning & file analysis
+* Gemini API (AI summary)
+* Hosted on **Render**
 
-PROMPT 5:
-Basically, I want a POST route at /api/structure where I can send a localPath in the request.
+---
 
-When this API is called, it should take that path, run the folder analyzer, and send back the result as a clean JSON response with a folderStructure array.
+## ⚙️ How It Works
 
-Keep everything simple and easy to follow, and make sure it handles errors properly in case something goes wrong.
+1. User enters a GitHub repository URL
+2. Backend clones the repository
+3. Multiple analyzers run:
 
-PROMPT 6:
-I want to add entry point detection to my project.
+   * Structure analyzer
+   * Entry point detector
+   * Dependency parser
+   * Flow analyzer
+4. AI processes results and generates summary
+5. Results are displayed in UI
 
-The idea is to scan all the files in a repository and try to find the main starting file, like server.js, index.js, app.js, main.js, or even main.py.
+---
 
-Once found, return basic details like the file name, its path, and a short explanation in simple English about what this file does.
+## 🚀 Installation & Setup
 
-If no entry point is found, just return null.
+### 1. Clone the repository
 
-Keep the logic simple and easy to understand.
+```bash
+git clone https://github.com/Vedika-gawande/github-repo-analyzer-clean.git
+cd github-repo-analyzer-clean
+```
 
+---
 
-PROMPT 7:
-Route Testing Script*
-I want to create a simple test script to check all my API routes.
+### 2. Setup Backend
 
-Create a file called `test-routes.js` inside the backend folder using only the built-in Node.js `http` module.
+```bash
+cd backend
+npm install
+```
 
-The script should test all routes step by step:
+Create `.env` file:
 
-* First call `POST /api/analyze` with a real GitHub repo URL
-* Then take the returned `localPath` and use it to test:
+```env
+PORT=3001
+GEMINI_API_KEY=your_api_key_here
+GITHUB_TOKEN=your_token_here
+```
 
-  * `POST /api/structure`
-  * `POST /api/entrypoint`
-  * `POST /api/dependencies`
+Run backend:
 
-For each route, print whether it passed or failed, along with some important parts of the response.
+```bash
+npm start
+```
 
-At the end, show a simple summary of how many routes passed.
+---
 
-Keep everything simple and easy to understand.
+### 3. Setup Frontend
 
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-I want to build an AI processor using the Google Gemini API.
+---
 
-This function should take all the analyzed data like repo name, folder structure, entry point, dependencies, and some basic stats, and then create a simple prompt from it.
+## 🌐 Deployment
 
-Use the Gemini model (gemini-1.5-flash) to generate output.
+### Frontend (Vercel)
 
-The response should be cleaned and converted into JSON, and return:
+* Root directory: `frontend`
+* Build command: `npm run build`
+* Output directory: `dist`
 
-* a short summary (2–3 lines)
-* 3 useful insights about the project
-* a techStack array
+### Backend (Render)
 
-If something goes wrong with the API, return a safe fallback response.
+* Root directory: `backend`
+* Build command: `npm install`
+* Start command: `node server.js`
 
-Also make sure to clean the response properly before parsing (remove backticks or extra formatting).
+Environment variable:
 
+```env
+VITE_BACKEND_URL=https://your-backend-url.onrender.com
+```
 
-I want to create an API endpoint for generating an AI summary.
+---
 
-Set up a POST route at `/api/summary` that takes `localPath` and `repoName` from the request.
+## ⚠️ Notes
 
-First, validate that both values are present.
+* Works best with **small to medium-sized repositories**
+* Large repositories may take longer due to:
 
-Then run all the analyzers together, pass the combined result to the AI processor, and return a clean JSON response with summary, insights, and techStack.
+  * Cloning time
+  * File analysis
+  * AI processing
+* Render free tier may introduce delay on first request (cold start)
 
-Keep it simple and handle errors properly so it doesn’t break.
+---
 
+## 📸 Screenshots (Optional)
 
-Some of my API routes like `/api/structure`, `/api/entrypoint`, and `/api/dependencies` are not working and returning 404.
+*Add screenshots of your UI here*
 
-Check if all route files are properly imported in `server.js` and connected using `app.use()`.
+---
 
-Also print all registered routes when the server starts so I can verify everything is connected correctly.
+## 👩‍💻 Author
 
-Keep it simple and easy to debug.
+**Vedika Gawande**
 
+* Computer Engineering Student
+* Passionate about Web Development & AI
 
-This is the prob statement on which we are building the soln in hackathon and i am working on repo fetcher feature so what prompt should i give to build that feature and i will give you the basic info of what all we are doing and then accordingly give me a prompt to build that feature and we've generated the basic folder structure in project repo so accordingly also System Architecture
+---
 
+## 💡 Future Improvements
 
-Q: What should happen after the repo is cloned — does the repo fetcher just clone & return the file tree, or should it also trigger the analyzers immediately?
-A: what will be best suitable as we are trying all this first time and currently sitting in hackathon and i am working on this feature while other teammates will handle other parts simultaneously so please you only explain workflow and what each should do now properly and in understandable terms
+* Support for private repositories
+* Faster analysis with caching
+* Better UI visualizations
+* Parallel processing optimization
+
+---
+
+## ⭐ If you like this project
+
+Give it a star on GitHub ⭐
+
+---

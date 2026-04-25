@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+/* All design tokens and animations are injected by App.jsx via GLOBAL_STYLES.
+   This file only needs to exist for Vite/Tailwind to process correctly. */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
